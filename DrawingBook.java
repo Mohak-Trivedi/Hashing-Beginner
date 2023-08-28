@@ -22,11 +22,17 @@ class Result {
      * 1. INTEGER n
      * 2. INTEGER p
      */
-    // Approach: w/o HashMap T.C.: O(n) S.C.: O(1)
+    // Approach: w/o HashMap T.C.: O(2n) S.C.: O(1)
     public static int pageCount(int n, int p) {
-        // Write your code here
-        if (p == 1 || p == n) {
-            return 0;
+        // Write your code
+        if (n % 2 == 0) {
+            if (p == 1 || p == n) {
+                return 0;
+            }
+        } else {
+            if (p == 1 || p == n || p == n - 1) {
+                return 0;
+            }
         }
 
         int currPage = 2; // already searched at 1 above
@@ -38,23 +44,14 @@ class Result {
 
         int turnedFromLast;
         if (n % 2 == 0) {
-            currPage = n - 1; // already searched at n above
-            turnedFromLast = 1; // as we are starting from Page n-1, n is already turned
-            while ((p != currPage) && (p != currPage - 1)) {
-                currPage -= 2;
-                turnedFromLast++;
-            }
-        } else {
             currPage = n - 1;
-            if (currPage == p) {
-                return 0;
-            }
-            currPage--;
-            turnedFromLast = 1;
-            while ((p != currPage) && (p != currPage - 1)) {
-                currPage -= 2;
-                turnedFromLast++;
-            }
+        } else {
+            currPage = n - 2;
+        }
+        turnedFromLast = 1;
+        while ((p != currPage) && (p != currPage - 1)) {
+            currPage -= 2;
+            turnedFromLast++;
         }
 
         return Math.min(turnedFromOne, turnedFromLast);
