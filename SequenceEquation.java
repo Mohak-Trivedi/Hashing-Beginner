@@ -21,35 +21,61 @@ class Result {
      * The function accepts INTEGER_ARRAY p as parameter.
      */
 
+    // Approach: w/o HashMap: T.C.: O(n^2), S.C.: O(1)
+    // public static List<Integer> permutationEquation(List<Integer> p) {
+    // // Write your code here
+    // int n = p.size();
+    // ArrayList<Integer> ans = new ArrayList<>();
+    // for (int x = 1; x <= n; x++) {
+    // // Find p(x) i.e. position of x in p
+    // int xPos = 0;
+    // for (int i = 0; i <= p.size(); i++) {
+    // if (p.get(i) == x) {
+    // xPos = i + 1; // p is 0-based but xPos is 1-based
+    // break;
+    // }
+    // }
+
+    // // Find y = p(p(x)) = p(xPos) i.e. position of xPos in p
+    // int y = 0;
+    // for (int i = 0; i <= p.size(); i++) {
+    // if (p.get(i) == xPos) {
+    // y = i + 1; // p is 0-based but y is 1-based
+    // break;
+    // }
+    // }
+
+    // // Store the current y
+    // ans.add(y);
+    // }
+    // return ans;
+    // }
+
+    // ALternate Approach: w/ HashMap: T.C.: O(n), S.C.: O(n^2)
     public static List<Integer> permutationEquation(List<Integer> p) {
-        // Write your code here
-        int n = p.size();
+        // Create a hashmap : given num, it should give position of num
+        Map<Integer, Integer> hmap = new HashMap<>();
+        for (int i = 0; i < p.size(); i++) {
+            hmap.put(p.get(i), i + 1); // i+1 because p is 0-based but we need positions 1-based, so, 0->1, 1->2,
+                                       // 2->3,...,p.size()-1->p.size()
+        }
+
         ArrayList<Integer> ans = new ArrayList<>();
+
+        int n = p.size();
         for (int x = 1; x <= n; x++) {
             // Find p(x) i.e. position of x in p
-            int xPos = 0;
-            for (int i = 0; i <= p.size(); i++) {
-                if (p.get(i) == x) {
-                    xPos = i + 1; // p is 0-based but xPos is 1-based
-                    break;
-                }
-            }
+            int xPos = hmap.get(x);
 
-            // Find y = p(p(x)) = p(xPos) i.e. position of xPos in p
-            int y = 0;
-            for (int i = 0; i <= p.size(); i++) {
-                if (p.get(i) == xPos) {
-                    y = i + 1; // p is 0-based but y is 1-based
-                    break;
-                }
-            }
+            // Find y = pos(pos(x)) i.e. position of xPos in p
+            int y = hmap.get(xPos);
 
-            // Store the current y
+            // Store current y
             ans.add(y);
         }
+
         return ans;
     }
-
 }
 
 // Use class name Solution in Hackerrank
