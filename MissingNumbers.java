@@ -23,6 +23,35 @@ class Result {
      * 2. INTEGER_ARRAY brr
      */
 
+    // Approach: Using 2 hashmaps: T.C.: O(2m + n + nlogn) ,S.C.: O(m + n)
+    // public static List<Integer> missingNumbers(List<Integer> arr, List<Integer>
+    // brr) {
+    // Map<Integer, Integer> aMap = new HashMap<>();
+    // for (int i = 0; i < arr.size(); i++) {
+    // aMap.put(arr.get(i), aMap.getOrDefault(arr.get(i), 0) + 1);
+    // }
+
+    // Map<Integer, Integer> bMap = new HashMap<>();
+    // for (int i = 0; i < brr.size(); i++) {
+    // bMap.put(brr.get(i), bMap.getOrDefault(brr.get(i), 0) + 1);
+    // }
+
+    // List<Integer> missingNumbersList = new ArrayList<>();
+    // for (Integer key : bMap.keySet()) {
+    // if (aMap.containsKey(key)) {
+    // if (aMap.get(key) < bMap.get(key)) {
+    // missingNumbersList.add(key);
+    // }
+    // } else {
+    // missingNumbersList.add(key);
+    // }
+    // }
+
+    // Collections.sort(missingNumbersList);
+    // return missingNumbersList;
+    // }
+
+    // Alternate approach: Using single hashmap: T.C.: O(2m + n + nlogn), S.C.: O(m)
     public static List<Integer> missingNumbers(List<Integer> arr, List<Integer> brr) {
         // Write your code here
         List<Integer> missingValueList = new ArrayList<>();
