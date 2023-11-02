@@ -33,7 +33,8 @@ class MaxLenZeroSumSub {
 // FirstOccurrenceIndex): O(2N), SC: O(2N)
 // For every element in the Prefix Sum array:
 // if(element == 0) -> sum[0, i] = 0 -> len = i+1, also store in sumFirstOcc if
-// not present already.
+// not present already. No need to store in
+// sumFirstOcc as first occurrence of sum 0 is index 0 always.
 // else if(element exists in sumFirstOcc) -> len = element's index - first
 // occurence
 // else -> first occurence -> store in sumFirstOcc
@@ -64,10 +65,6 @@ class GfG {
             if (prefixSum[i] == 0) {
                 len = i + 1;
                 maxLen = Math.max(maxLen, len);
-
-                if (!sumFirstOcc.containsKey(prefixSum[i])) {
-                    sumFirstOcc.put(prefixSum[i], i);
-                }
             } else if (sumFirstOcc.containsKey(prefixSum[i])) {
                 int LMinusOne = sumFirstOcc.get(prefixSum[i]);
                 len = i - LMinusOne;
