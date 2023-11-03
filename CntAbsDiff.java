@@ -13,6 +13,10 @@
 // given if x<0 then |x|=-x -> -(nums[i] - nums[j]) == k -> nums[j] - nums[i] == k -> nums[i] == nums[j] - k
 // Therefore, for every num in nums[]: get frequency of num + k and num - k.
 
+// CAUTION:
+// Do not make HashMap before, instead make it on the go because we need to find pairs nums[i] and nums[j] where i<j.
+// If we make HashMap before, then for nums[i] we will also get nums[j] which are j>i.
+
 import java.util.*;
 
 class Solution {
