@@ -38,12 +38,10 @@ class GFG {
             // if(cumXor == m) {
             // count++;
             // }
-            // no need to include above if along with below as we have put cumulative XOR 0
+            // no need to include above if as we have put cumulative XOR 0
             // at line 32.
-            if (fmap.containsKey(m ^ cumXor)) {
-                int freq = fmap.get(m ^ cumXor);
-                count += freq;
-            }
+            int freq = fmap.getOrDefault(m ^ cumXor, 0);
+            count += freq;
 
             fmap.put(cumXor, fmap.getOrDefault(cumXor, 0) + 1);
         }
