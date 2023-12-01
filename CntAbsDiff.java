@@ -9,9 +9,9 @@
 
 // Logic:
 // |nums[i] - nums[j]| == k
-// given if x>=0 then |x|=x -> nums[i] - nums[j] == k -> nums[i] == nums[j] + k
-// given if x<0 then |x|=-x -> -(nums[i] - nums[j]) == k -> nums[j] - nums[i] == k -> nums[i] == nums[j] - k
-// Therefore, for every num in nums[]: get frequency of num + k and num - k.
+// given if x>=0 then |x|=x -> nums[i] - nums[j] == k -> nums[i] - k == nums[j]
+// given if x<0 then |x|=-x -> -(nums[i] - nums[j]) == k -> nums[j] - nums[i] == k -> nums[i] + k == nums[j]
+// Therefore, for every num in nums[]: get frequency of num - k and num + k.
 
 // CAUTION:
 // Do not make HashMap before, instead make it on the go because we need to find pairs nums[i] and nums[j] where i<j.
